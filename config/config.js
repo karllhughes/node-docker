@@ -4,9 +4,10 @@ const DB = process.env.DB;
 const clientID = process.env.GITHUB_CLIENT_ID;
 const clientSecret = process.env.GITHUB_CLIENT_SECRET;
 
+
 module.exports = {
   development: {
-    db: "mongodb://localhost/ntwitter",
+    db: "mongodb://mongo/ntwitter",
     root: rootPath,
     app: {
       name: "Node Twitter"

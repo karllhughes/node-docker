@@ -4,6 +4,10 @@ services:
     build: .
     ports:
     - "3000:3000"
+    volumes:
+      - ./app:/usr/src/app/app
+      - ./config:/usr/src/app/config
+      - ./public:/usr/src/app/public
     depends_on:
     - mongo
   mongo:
