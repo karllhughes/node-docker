@@ -1,18 +1,19 @@
-version: "2"
+version: "3.5"
 services:
   web:
     build: .
     ports:
     - "3000:3000"
     volumes:
-      - ./app:/usr/src/app/app
-      - ./config:/usr/src/app/config
-      - ./public:/usr/src/app/public
+    - ./app:/usr/src/app/app
+    - ./config:/usr/src/app/config
+    - ./public:/usr/src/app/public
     depends_on:
     - mongo
+    command: ["./scripts/wait-for-it.sh", "mongo:27017", "--", "npm", "start"]
   mongo:
     image: mongo
     volumes:
-      - ./data:/data/db
+    - ./data:/data/db
     ports:
     - "27017:27017"

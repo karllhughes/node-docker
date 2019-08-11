@@ -30,6 +30,21 @@ I'd recommend starting with the first one.
 
 Follow the instructions on that branch's `readme.md` file.
 
+## Cheat Sheet
+
+If you don't want to follow the steps, and you just want to skip right to the end, follow the instructions 
+below to get this app up and running.
+
+### Local Development
+
+- Run the containers in detached mode: `docker-compose up -d`
+
+### Continuous Integration
+
+
+### Production Deployment
+
+
 ## License
 [Apache License 2.0](https://github.com/vinitkumar/node-twitter/blob/master/License)
 
