@@ -1,4 +1,3 @@
-
 FROM node:11.12.0
 
 WORKDIR /usr/src/app
