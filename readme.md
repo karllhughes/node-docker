@@ -37,13 +37,23 @@ below to get this app up and running.
 
 ### Local Development
 
-- Run the containers in detached mode: `docker-compose up -d`
+- Run the containers: `docker-compose up`
+
+The site should be running at [localhost:3000](http://localhost:3000/)
 
 ### Continuous Integration
 
+- Build the Docker image fresh and run the tests: `bash scripts/test.sh`
+
+After the tests run, the command should return an error code 0. To check this, enter `echo $?` into your terminal.
 
 ### Production Deployment
 
+This portion of the tutorial uses Kubernetes and assumes you have an account on [Docker Hub](https://hub.docker.com/) and 
+[Kubesail](https://kubesail.com/services). 
+
+- Build the Production-Ready Docker image: `docker build -t <YOUR_DOCKER_HUB_USERNAME>/node-twitter-docker ./Dockerfile.prod`
+- Use Zeit to deploy: `now --docker --public --name node-twitter-docker`
 
 ## License
 [Apache License 2.0](https://github.com/vinitkumar/node-twitter/blob/master/License)
