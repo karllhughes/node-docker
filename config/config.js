@@ -1,9 +1,10 @@
 const path = require("path");
 const rootPath = path.normalize(__dirname + "/..");
-const DB = process.env.DB;
 const clientID = process.env.GITHUB_CLIENT_ID;
 const clientSecret = process.env.GITHUB_CLIENT_SECRET;
-
+const username = process.env.MONGO_INITDB_ROOT_USERNAME;
+const password = process.env.MONGO_INITDB_ROOT_PASSWORD;
+const database = process.env.MONGO_INITDB_DATABASE;
 
 module.exports = {
   development: {
@@ -18,23 +19,11 @@ module.exports = {
       callbackURL: "http://localhost:3000/auth/github/callback"
     }
   },
-  test: {
-    db: "mongodb://root:volvo76@ds039078.mongolab.com:39078/ntwitter",
-    root: rootPath,
-    app: {
-      name: "Nodejs Express Mongoose Demo"
-    },
-    github: {
-      clientID: "c2e0f478634366e1289d",
-      clientSecret: "0bfde82383deeb99b28d0f6a9eac001a0deb798a",
-      callbackURL: "http://localhost:3000/auth/github/callback"
-    }
-  },
   production: {
-    db: DB,
+    db: `mongodb://${username}:${password}@mongo/${database}`,
     root: rootPath,
     app: {
-      name: "Nodejs Express Mongoose Demo"
+      name: "Node Twitter"
     },
     github: {
       clientID: clientID,

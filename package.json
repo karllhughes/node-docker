@@ -1,5 +1,5 @@
 {
-  "name": "nwitter",
+  "name": "node-twitter-docker",
   "description": "A twitter clone written with Node.js, Express, and MongoDB",
   "version": "2.1.0",
   "repository": "https://github.com/vinitkumar/node-twitter",

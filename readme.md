@@ -21,6 +21,10 @@ You are required to have Docker installed if you'd like to run the app locally.
 You should also have access to a terminal (bash preferred) and text editor. While not 
 necessarily required, some familiarity with Javascript and Node will be helpful.
 
+Finally, if you'd like to deploy this project to a production server, use [DigitalOcean](https://m.do.co/c/888fefc32a01).
+If you don't have an account, get $50 in credit free by signing up with this link: 
+[https://m.do.co/c/888fefc32a01](https://m.do.co/c/888fefc32a01)
+
 ## Getting Started
 
 Clone this repository (or fork it into your Github account and then clone it): `git clone https://github.com/karllhughes/node-twitter-docker`
@@ -49,11 +53,23 @@ After the tests run, the command should return an error code 0. To check this, e
 
 ### Production Deployment
 
-This portion of the tutorial uses Kubernetes and assumes you have an account on [Docker Hub](https://hub.docker.com/) and 
-[Kubesail](https://kubesail.com/services). 
+This portion of the tutorial uses requires a web hosting service with Docker installed. 
+[DigitalOcean](https://www.digitalocean.com/) is a good option.
 
-- Build the Production-Ready Docker image: `docker build -t <YOUR_DOCKER_HUB_USERNAME>/node-twitter-docker ./Dockerfile.prod`
-- Use Zeit to deploy: `now --docker --public --name node-twitter-docker`
+- Create a Droplet or server (process varies based on the host you use)
+- SSH into your new server: `ssh <USERNAME>@<IP_ADDRESS>`
+- Clone the project: `git clone https://github.com/karllhughes/node-twitter-docker`
+- Run the production docker-compose file with all the secure ENV variables: 
+
+```
+MONGO_INITDB_ROOT_USERNAME=<DB_USERNAME> \
+  MONGO_INITDB_ROOT_PASSWORD=<DB_PASSWORD> \
+  SECRET=<A_LONG_RANDOM_STRING> \
+  ... \
+  docker-compose -f docker-compose.prod.yml up -d
+```
+
+The site should be running at `http://<IP_ADDRESS>/`.
 
 ## License
 [Apache License 2.0](https://github.com/vinitkumar/node-twitter/blob/master/License)

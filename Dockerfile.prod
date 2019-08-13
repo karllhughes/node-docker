@@ -2,17 +2,21 @@ FROM node:12
 
 WORKDIR /usr/src/app
 
+# Environment variables
+ENV NODE_ENV='production'
+
 # Install app dependencies
 COPY package*.json ./
-RUN npm install
-
-ENV SECRET='abadjadjadja1223232412424'
+RUN npm install --production'
 
 # Copy app source code
 COPY . .
 
 # Expose port
-EXPOSE 8080
+EXPOSE 3000
+
+# Run as node user for security
+USER node
 
 # Run the application
-CMD [ "npm", "start" ]
+CMD [ "node", "server.js" ]
