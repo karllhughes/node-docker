@@ -1,13 +1,29 @@
 version: "3"
 services:
   web:
-    build: ./Dockerfile.prod
+    build:
+      dockerfile: Dockerfile.prod
+      context: .
     ports:
     - "3000:3000"
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME
+      - MONGO_INITDB_ROOT_PASSWORD
+      - MONGO_INITDB_DATABASE
+      - ROOT_DOMAIN
+      - SECRET
+      - GITHUB_CLIENT_ID
+      - GITHUB_CLIENT_SECRET
     depends_on:
     - mongo
-    command: ["./scripts/wait-for-it.sh", "mongo:27017", "--", "node", "server.js"]
+    restart: on-failure
+    command: ["./scripts/wait-for-it.sh", "mongo:27017", "-t", "120", "--", "node", "server.js"]
   mongo:
-    image: mongo
+    image: mongo:4.1
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME
+      - MONGO_INITDB_ROOT_PASSWORD
+      - MONGO_INITDB_DATABASE
+    restart: on-failure
     volumes:
     - ./data:/data/db

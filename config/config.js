@@ -5,6 +5,7 @@ const clientSecret = process.env.GITHUB_CLIENT_SECRET;
 const username = process.env.MONGO_INITDB_ROOT_USERNAME;
 const password = process.env.MONGO_INITDB_ROOT_PASSWORD;
 const database = process.env.MONGO_INITDB_DATABASE;
+const domain = process.env.ROOT_DOMAIN;
 
 module.exports = {
   development: {
@@ -20,7 +21,7 @@ module.exports = {
     }
   },
   production: {
-    db: `mongodb://${username}:${password}@mongo/${database}`,
+    db: `mongodb://${username}:${password}@mongo/${database}?authSource=admin`,
     root: rootPath,
     app: {
       name: "Node Twitter"
@@ -28,7 +29,7 @@ module.exports = {
     github: {
       clientID: clientID,
       clientSecret: clientSecret,
-      callbackURL: "http://nitter.herokuapp.com/auth/github/callback"
+      callbackURL: `${domain}/auth/github/callback`
     }
   }
 };
