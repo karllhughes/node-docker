@@ -59,21 +59,23 @@ This portion of the tutorial uses requires a web hosting service with Docker ins
 - Create a Droplet or server (process varies based on the host you use)
 - SSH into your new server: `ssh <USERNAME>@<IP_ADDRESS>`
 - Clone the project: `git clone https://github.com/karllhughes/node-twitter-docker`
-- Run the production docker-compose file with all the secure ENV variables: 
+- Run the production docker-compose file with all the secure ENV variables and build the image: 
 
 ```
-MONGO_INITDB_ROOT_USERNAME=<DB_USERNAME> \
-  MONGO_INITDB_ROOT_PASSWORD=<DB_PASSWORD> \
-  SECRET=<A_LONG_RANDOM_STRING> \
-  ... \
-  docker-compose -f docker-compose.prod.yml up -d
+MONGO_INITDB_ROOT_USERNAME=... \
+  MONGO_INITDB_ROOT_PASSWORD=... \
+  MONGO_INITDB_DATABASE=... \
+  SECRET=... \
+  GITHUB_CLIENT_ID=... \
+  GITHUB_CLIENT_SECRET=... \
+  ROOT_DOMAIN=... \
+  docker-compose -f docker-compose.prod.yml up --build -d
 ```
 
 The site should be running at `http://<IP_ADDRESS>/`.
 
 ## License
 [Apache License 2.0](https://github.com/vinitkumar/node-twitter/blob/master/License)
-
 
 [![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fvinitkumar%2Fnode-twitter.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Fvinitkumar%2Fnode-twitter?ref=badge_large)
 
