@@ -1,27 +1,65 @@
-# Node Twitter Docker - Challenge 1
-The first challenge has several parts, but they are ideally designed to be done sequentially.
+# Node Twitter Docker - Answer Key
+No peaking! 👀
 
-If you get stuck, you can ask for help, or skip ahead to the next step and see if it can be done without the previous step.
+## Challenge 1
 
-1. Run an `alpine` Docker container that tails a file using flags to:
-    - Name the container
-    - Run the container in detached mode
-    - Hint: To keep the container running, use the command `tail -f /dev/null`. Your whole Docker run command will look something like this: `docker run ...FLAGS_HERE... alpine tail -f /dev/null`.
-    - Hint 2: Review the [`docker run` command docs](https://docs.docker.com/engine/reference/commandline/run/) for details on the flags available.
-2. View all running containers with `docker ps`
-3. View the logs of the running container using `docker logs` (there may not be anything in the file)
-4. Execute a `echo "Hello"` from the running container using `docker exec`
-5. Inspect the running container using `docker inspect`
-6. Stop and remove the container
-7. Run an `ubuntu` Docker container, using flags to:
-    - Run in "interactive" or pseudo-TTY mode
-    - Set a "working directory"
-    - Add an environment variable to the container
-    - Run a `bash` shell command
-    - Automatically remove the container when it is stopped
-8. From within the docker container, output the contents the environment variable you added (using `echo $YOUR_ENV_VARIABLE`)
-9. Exit the container
-10. Use image tags to run a Docker container that outputs the current version of Node being used.
-    - Using a *Node 10* Docker image
-    - Using a *Node 8* Docker image
-11. Run the `hello.js` file by mounting it into a Node Docker container using the [-v flag](https://docs.docker.com/engine/reference/commandline/run/#mount-volume--v---read-only).
+Part 1
+```
+docker run --name=harry -d alpine tail -f /dev/null
+```
+
+Part 2 - 6
+```
+docker ps
+
+docker logs harry (-f)
+
+docker exec harry echo "Hello"
+
+docker inspect harry
+
+docker rm -f harry
+OR
+docker stop harry && docker rm harry
+```
+
+Part 7 - 9
+```
+docker run -it -w /home -e HELLO_WORLD="Hey World" --rm ubuntu bash
+
+root@ac8014cd8a13:/home# echo $HELLO_WORLD
+
+> Hey World
+
+root@ac8014cd8a13:/home# exit
+```
+
+Part 10
+```
+docker run node:10 node -v
+docker run node:8 node -v
+```
+
+Part 11
+```
+docker run -v `pwd`:`pwd` -w `pwd` node:10 node hello.js
+```
+
+## Challenge 2
+TBD
+
+## Challenge 3
+TBD
+
+## Challenge 4
+TBD
+
+## Challenge 5
+TBD
+
+## Challenge 6
+TBD
+
+## Challenge 7
+TBD
+
