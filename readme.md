@@ -1,75 +1,27 @@
-# Node Twitter Docker
+# Node Twitter Docker - Challenge 1
+The first challenge has several parts, but they are ideally designed to be done sequentially.
 
-This project was specifically branched off the wonderful [Node Twitter](https://github.com/vinitkumar/node-twitter) 
-project for use as a part of a workshop designed to teach Node/Javascript developers about Docker.
+If you get stuck, you can ask for help, or skip ahead to the next step and see if it can be done without the previous step.
 
-By the end of this tutorial, you should have a working Twitter clone:
-
-<img src="https://cldup.com/smoNHY-9mI.png">
-<img src="https://cldup.com/oEa3EIGhyJ.png">
-
-You can support the original project (Node Twitter) here: https://opencollective.com/node-twitter
-
-## Prerequisites
-
-You are required to have Docker installed if you'd like to run the app locally.
-
-- Docker for Mac: https://hub.docker.com/editions/community/docker-ce-desktop-mac
-- Docker for Windows: https://hub.docker.com/editions/community/docker-ce-desktop-windows
-- Docker for Linux: https://docs.docker.com/install/linux/docker-ce/ubuntu/
-
-You should also have access to a terminal (bash preferred) and text editor. While not 
-necessarily required, some familiarity with Javascript and Node will be helpful.
-
-Finally, if you'd like to deploy this project to a production server, we will use [DigitalOcean](https://m.do.co/c/888fefc32a01).
-If you don't have an account, get $50 in credit free by signing up with this link: 
-[https://m.do.co/c/888fefc32a01](https://m.do.co/c/888fefc32a01)
-
-## Getting Started
-
-Clone this repository (or fork it into your Github account and then clone it): `git clone https://github.com/karllhughes/node-twitter-docker`
-
-Switch to the branch you'd like to start learning from. The lessons are numbered, so if you're brand new to Docker,
-I'd recommend starting with the first one.
-
-Follow the instructions on that branch's `readme.md` file.
-
-## Challenges
-
-### 1. Introduction
-
-Branch: `01-introduction`
-
-### 2. Persistence and Volumes
-
-Branch: `02-volumes`
-
-### 3. Building a Docker Image
-
-Branch: `03-images`
-
-### 4. Networking Containers
-
-Branch: `04-networking`
-
-### 5. Docker-Compose
-
-Branch: `05-compose`
-
-### 6. Docker for Continuous Integration
-
-Branch: `06-ci`
-
-### 7. Docker in Production
-
-Branch: `07-production`
-
-
-## License
-[Apache License 2.0](https://github.com/vinitkumar/node-twitter/blob/master/License)
-
-[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fvinitkumar%2Fnode-twitter.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Fvinitkumar%2Fnode-twitter?ref=badge_large)
-
-## Important
-
-Twitter is a registered trademark of Twitter Inc. This project is just for learning purposes and should be treated as such.
+1. Run an `alpine` Docker container that tails a file using flags to:
+    - Name the container
+    - Run the container in detached mode
+    - Hint: To keep the container running, use the command `tail -f /dev/null`. Your whole Docker run command will look something like this: `docker run ...FLAGS_HERE... alpine tail -f /dev/null`.
+    - Hint 2: Review the [`docker run` command docs](https://docs.docker.com/engine/reference/commandline/run/) for details on the flags available.
+2. View all running containers with `docker ps`
+3. View the logs of the running container using `docker logs` (there may not be anything in the file)
+4. Execute a `echo "Hello"` from the running container using `docker exec`
+5. Inspect the running container using `docker inspect`
+6. Stop and remove the container
+7. Run an `ubuntu` Docker container, using flags to:
+    - Run in "interactive" or pseudo-TTY mode
+    - Set a "working directory"
+    - Add an environment variable to the container
+    - Run a `bash` shell command
+    - Automatically remove the container when it is stopped
+8. From within the docker container, output the contents the environment variable you added (using `echo $YOUR_ENV_VARIABLE`)
+9. Exit the container
+10. Use image tags to run a Docker container that outputs the current version of Node being used.
+    - Using a *Node 10* Docker image
+    - Using a *Node 8* Docker image
+11. Run the `hello.js` file by mounting it into a Node Docker container using the [-v flag](https://docs.docker.com/engine/reference/commandline/run/#mount-volume--v---read-only).
