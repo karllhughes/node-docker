@@ -3,6 +3,8 @@ The first challenge has several parts, but they are ideally designed to be done 
 
 If you get stuck, you can ask for help, or skip ahead to the next step and see if it can be done without the previous step.
 
+Record your answers here or in a new document. You may be asked to share your solution with the class.
+
 1. Run an `alpine` Docker container that tails a file using flags to:
     - Name the container
     - Run the container in detached mode
