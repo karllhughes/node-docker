@@ -21,7 +21,7 @@ You are required to have Docker installed if you'd like to run the app locally.
 You should also have access to a terminal (bash preferred) and text editor. While not 
 necessarily required, some familiarity with Javascript and Node will be helpful.
 
-Finally, if you'd like to deploy this project to a production server, use [DigitalOcean](https://m.do.co/c/888fefc32a01).
+Finally, if you'd like to deploy this project to a production server, we will use [DigitalOcean](https://m.do.co/c/888fefc32a01).
 If you don't have an account, get $50 in credit free by signing up with this link: 
 [https://m.do.co/c/888fefc32a01](https://m.do.co/c/888fefc32a01)
 
@@ -34,45 +34,36 @@ I'd recommend starting with the first one.
 
 Follow the instructions on that branch's `readme.md` file.
 
-## Cheat Sheet
+## Challenges
 
-If you don't want to follow the steps, and you just want to skip right to the end, follow the instructions 
-below to get this app up and running.
+### 1. Introduction
 
-### Local Development
+Branch: `01-introduction`
 
-- Run the containers: `docker-compose up`
+### 2. Persistence and Volumes
 
-The site should be running at [localhost:3000](http://localhost:3000/)
+Branch: `02-volumes`
 
-### Continuous Integration
+### 3. Building a Docker Image
 
-- Build the Docker image fresh and run the tests: `bash scripts/test.sh`
+Branch: `03-images`
 
-After the tests run, the command should return an error code 0. To check this, enter `echo $?` into your terminal.
+### 4. Networking Containers
 
-### Production Deployment
+Branch: `04-networking`
 
-This portion of the tutorial uses requires a web hosting service with Docker installed. 
-[DigitalOcean](https://www.digitalocean.com/) is a good option.
+### 5. Docker-Compose
 
-- Create a Droplet or server (process varies based on the host you use)
-- SSH into your new server: `ssh <USERNAME>@<IP_ADDRESS>`
-- Clone the project: `git clone https://github.com/karllhughes/node-twitter-docker`
-- Run the production docker-compose file with all the secure ENV variables and build the image: 
+Branch: `05-compose`
 
-```
-MONGO_INITDB_ROOT_USERNAME=... \
-  MONGO_INITDB_ROOT_PASSWORD=... \
-  MONGO_INITDB_DATABASE=... \
-  SECRET=... \
-  GITHUB_CLIENT_ID=... \
-  GITHUB_CLIENT_SECRET=... \
-  ROOT_DOMAIN=... \
-  docker-compose -f docker-compose.prod.yml up --build -d
-```
+### 6. Docker for Continuous Integration
 
-The site should be running at `http://<IP_ADDRESS>/`.
+Branch: `06-ci`
+
+### 7. Docker in Production
+
+Branch: `07-production`
+
 
 ## License
 [Apache License 2.0](https://github.com/vinitkumar/node-twitter/blob/master/License)
