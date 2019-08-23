@@ -3,3 +3,6 @@ data/
 .idea
 .DS_Store
 npm-debug.log
+.secrets
+**/node_modules
+
