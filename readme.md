@@ -1,75 +1,25 @@
-# Node Twitter Docker
+# Node Twitter Docker - Challenge 3
+In the third challenge, you will create your own Dockerfile and use it to run the Node Twitter app.
 
-This project was specifically branched off the wonderful [Node Twitter](https://github.com/vinitkumar/node-twitter) 
-project for use as a part of a workshop designed to teach Node/Javascript developers about Docker.
+If you get stuck, you can ask for help, or skip ahead to the next step and see if it can be done without the previous step.
 
-By the end of this tutorial, you should have a working Twitter clone:
+Record your solutions here or in a new document. You may be asked to share your solution with the class.
 
-<img src="https://cldup.com/smoNHY-9mI.png">
-<img src="https://cldup.com/oEa3EIGhyJ.png">
-
-You can support the original project (Node Twitter) here: https://opencollective.com/node-twitter
-
-## Prerequisites
-
-You are required to have Docker installed if you'd like to run the app locally.
-
-- Docker for Mac: https://hub.docker.com/editions/community/docker-ce-desktop-mac
-- Docker for Windows: https://hub.docker.com/editions/community/docker-ce-desktop-windows
-- Docker for Linux: https://docs.docker.com/install/linux/docker-ce/ubuntu/
-
-You should also have access to a terminal (bash preferred) and text editor. While not 
-necessarily required, some familiarity with Javascript and Node will be helpful.
-
-Finally, if you'd like to deploy this project to a production server, we will use [DigitalOcean](https://m.do.co/c/888fefc32a01).
-If you don't have an account, get $50 in credit free by signing up with this link: 
-[https://m.do.co/c/888fefc32a01](https://m.do.co/c/888fefc32a01)
-
-## Getting Started
-
-Clone this repository (or fork it into your Github account and then clone it): `git clone https://github.com/karllhughes/node-twitter-docker`
-
-Switch to the branch you'd like to start learning from. The lessons are numbered, so if you're brand new to Docker,
-I'd recommend starting with the first one.
-
-Follow the instructions on that branch's `readme.md` file.
-
-## Challenges
-
-### 1. Introduction
-
-Branch: `01-introduction`
-
-### 2. Persistence and Volumes
-
-Branch: `02-volumes`
-
-### 3. Building a Docker Image
-
-Branch: `03-images`
-
-### 4. Networking Containers
-
-Branch: `04-networking`
-
-### 5. Docker-Compose
-
-Branch: `05-compose`
-
-### 6. Docker for Continuous Integration
-
-Branch: `06-ci`
-
-### 7. Docker in Production
-
-Branch: `07-production`
-
-
-## License
-[Apache License 2.0](https://github.com/vinitkumar/node-twitter/blob/master/License)
-
-[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fvinitkumar%2Fnode-twitter.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Fvinitkumar%2Fnode-twitter?ref=badge_large)
-
-## Important
-
-Twitter is a registered trademark of Twitter Inc. This project is just for learning purposes and should be treated as such.
+1. Create a file in the root of this project called `Dockerfile`. Include instructions to accomplish the following:
+    - Extend the `node:12` base image
+    - Specify `/usr/src/app` as the working directory
+    - Add an environment variable called `SECRET` and set it equal to a long, random string of numbers
+    - Set the `NODE_ENV` environment variable to `development`
+    - Copy all the application files into the image 
+    - Install the npm dependencies
+    - Expose port 3000
+    - Set the final command to execute `npm start`
+    - Hint: The [Dockerfile reference](https://docs.docker.com/engine/reference/builder/) might come in handy if you don't remember all the instructions we covered.
+2. Add a `.docker-ignore` file that ensures the following paths are not included in the Docker image:
+    - Any editor-specific configuration files/directories
+    - Local node modules directory
+    - The `data/` directory (we'll be using this for the database later)
+    - Any `.env` or secrets files you are using. 
+2. Build a Docker image from your `Dockerfile`.
+3. Run your Docker image as a container (it will likely fail as you don't have a database container running yet, but we'll fix that in the next challenge).
+4. Bonus: Create an account on [Docker Hub](https://hub.docker.com/). Push your image to Docker Hub and have your partner pull the image and run it locally.
