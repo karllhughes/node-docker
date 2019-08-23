@@ -20,6 +20,6 @@ Record your solutions here or in a new document. You may be asked to share your 
     - Local node modules directory
     - The `data/` directory (we'll be using this for the database later)
     - Any `.env` or secrets files you are using. 
-2. Build a Docker image from your `Dockerfile`.
-3. Run your Docker image as a container (it will likely fail as you don't have a database container running yet, but we'll fix that in the next challenge).
-4. Bonus: Create an account on [Docker Hub](https://hub.docker.com/). Push your image to Docker Hub and have your partner pull the image and run it locally.
+3. Build a Docker image from your `Dockerfile`.
+4. Run your Docker image as a container (it will likely fail as you don't have a database container running yet, but we'll fix that in the next challenge).
+5. Bonus: Create an account on [Docker Hub](https://hub.docker.com/). Push your image to Docker Hub and have your partner pull the image and run it locally.
