@@ -21,5 +21,8 @@ Record your solutions here or in a new document. You may be asked to share your 
     - The `data/` directory (we'll be using this for the database later)
     - Any `.env` or secrets files you are using. 
 3. Build a Docker image from your `Dockerfile`.
-4. Run your Docker image as a container (it will likely fail as you don't have a database container running yet, but we'll fix that in the next challenge).
+4. Run your Docker image as a container with options such that:
+    - The container runs in "interactive" mode
+    - Port 3000 on the container is exposed to your localhost
+    - Hint: The container will crash and give you an error about not being able to connect to MongoDB, but we'll fix that in the next challenge.
 5. Bonus: Create an account on [Docker Hub](https://hub.docker.com/). Push your image to Docker Hub and have your partner pull the image and run it locally.
