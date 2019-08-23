@@ -46,7 +46,30 @@ docker run -v `pwd`:`pwd` -w `pwd` node:10 node hello.js
 ```
 
 ## Challenge 2
-TBD
+
+Part 1
+```
+docker run -v `pwd`/data:/data/db --rm -d --name=database mongo
+```
+
+Part 2
+```
+docker exec -it database mongo --eval 'db.test_collection.insert({ name: "Karl", location: "Chicago" }, { name: "Steven", location: "West Berlin" }, {name: "Sue", location: "Pennsylvania"})'
+```
+
+Part 3
+```
+docker rm -f database
+```
+
+Part 4
+```
+docker run -v mongo-data:/data/db --rm -d --name=database -p 37017:27017 mongo
+```
+
+Part 5
+
+_Open Robo 3T_
 
 ## Challenge 3
 TBD
