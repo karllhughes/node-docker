@@ -72,7 +72,51 @@ Part 5
 _Open Robo 3T_
 
 ## Challenge 3
-TBD
+
+Part 1
+```
+FROM node:12
+
+WORKDIR /usr/src/app
+
+# Environment variables
+ENV SECRET='4cvaabs41buCDDvs6OKIT813Xj8Z88Do'
+ENV NODE_ENV='development'
+
+# Install app dependencies
+COPY package*.json ./
+RUN npm install
+
+# Copy app source code
+COPY . .
+
+# Expose port
+EXPOSE 3000
+
+# Run the application
+CMD [ "npm", "start" ]
+```
+
+Part 2
+```
+data/
+.git
+.idea
+.DS_Store
+npm-debug.log
+.secrets
+**/node_modules
+```
+
+Part 3
+```
+docker build -t karllhughes/node-twitter-docker .
+```
+
+Part 4
+```
+docker run -it -p 3000:3000 karllhughes/node-twitter-docker
+```
 
 ## Challenge 4
 TBD
