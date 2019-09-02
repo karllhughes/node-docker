@@ -5,4 +5,3 @@ data/
 npm-debug.log
 .secrets
 **/node_modules
-
