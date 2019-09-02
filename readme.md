@@ -15,14 +15,14 @@ Record your solutions here or in a new document. You may be asked to share your 
     - Make sure the container is running using `docker ps`
     - Hint: Review the solution to Challenge 2 if you get stuck
     - Hint 2: Review the [Docker networking documentation](https://docs.docker.com/network/bridge/#connect-a-container-to-a-user-defined-bridge) if you don't remember how to connect to a network.
-4. Run the `node-twitter-docker` image you just created in step 1 with flags for the following:
+4. Run the `node-twitter-docker` image you just created in part 1 with flags for the following:
     - Name the container `web`
     - Expose port 3000 to your localhost
     - Run the container in "interactive" mode
     - Connect the container to the `mynet` network
     - If this worked, you should not see an error about connecting to MongoDB this time, and the Twitter clone should be up and running at `localhost:3000`
     - Hint: Review the solution to Challenge 3 if you get stuck
-5. Stop and remove the `web` container from step 4.
+5. Stop and remove the `web` container from part 4.
 6. Bonus: Re-run the `web` container, but this time:
     - Run the container in "detached" mode instead of "interactive" mode
     - Mount the `./app` directory on your local machine as a bind mount to the `/usr/src/app/app` directory in the container
@@ -30,4 +30,4 @@ Record your solutions here or in a new document. You may be asked to share your 
     - Use `docker logs` with the "follow" option to tail the `web` container's logs 
     - Change a file in the `./app` directory on your local machine
     - Ensure that the build process is triggered and that the change takes effect
-8. When all steps are complete, stop and remove both the Docker containers and the network.
+8. When all parts are complete, stop and remove both the Docker containers and the network.
