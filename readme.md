@@ -224,7 +224,28 @@ services:
 ```
 
 ## Challenge 6
-TBD
+
+Part 1
+
+```
+version: "3.7"
+services:
+  test:
+    build: .
+    depends_on:
+    - mongo
+    command: ["./scripts/wait-for-it.sh", "mongo:27017", "--", "npm", "test"]
+  mongo:
+    image: mongo
+    volumes:
+    - ./data:/data/db
+```
+
+Part 2
+
+```
+docker-compose -f docker-compose.test.yml up --abort-on-container-exit --exit-code-from test --build
+```
 
 ## Challenge 7
 TBD
