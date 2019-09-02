@@ -1,33 +1,25 @@
-# Node Twitter Docker - Challenge 4
-In the third challenge, you will run a database and web container linked on a common network. After this exercise, you'll be able to see a working application at `localhost:3000`.
+# Node Twitter Docker - Challenge 5
+In the fifth challenge, you will repeat the outcome of the Challenge 4 using Docker Compose. After this exercise, you'll be able to see a working application at `localhost:3000`.
 
 If you get stuck, you can ask for help, or skip ahead to the next step and see if it can be done without the previous step.
 
 Record your solutions here or in a new document. You may be asked to share your solution with the class.
 
-1. Build a Docker image called `node-twitter-docker` using the `Dockerfile` in the root directory of this project.
-2. Create a Docker network called `mynet`.
-3. Run a MongoDB container with flags for the following options:
-    - Name the container `mongo`
-    - Run the container in detached mode
-    - Connect the container to the `mynet` network
-    - Use a bind mount (volume) to save the database files (located at `/data/db`) in a in the `./data` directory in this project
-    - Make sure the container is running using `docker ps`
-    - Hint: Review the solution to Challenge 2 if you get stuck
-    - Hint 2: Review the [Docker networking documentation](https://docs.docker.com/network/bridge/#connect-a-container-to-a-user-defined-bridge) if you don't remember how to connect to a network.
-4. Run the `node-twitter-docker` image you just created in part 1 with flags for the following:
-    - Name the container `web`
-    - Expose port 3000 to your localhost
-    - Run the container in "interactive" mode
-    - Connect the container to the `mynet` network
-    - If this worked, you should not see an error about connecting to MongoDB this time, and the Twitter clone should be up and running at `localhost:3000`
-    - Hint: Review the solution to Challenge 3 if you get stuck
-5. Stop and remove the `web` container from part 4.
-6. Bonus: Re-run the `web` container, but this time:
-    - Run the container in "detached" mode instead of "interactive" mode
-    - Mount the `./app` directory on your local machine as a bind mount to the `/usr/src/app/app` directory in the container
-7. Bonus 2: After the `web` container is running again:
-    - Use `docker logs` with the "follow" option to tail the `web` container's logs 
-    - Change a file in the `./app` directory on your local machine
-    - Ensure that the build process is triggered and that the change takes effect
-8. When all parts are complete, stop and remove both the Docker containers and the network.
+1. Create a `docker-compose.yml` file that accomplishes the following:
+    - Uses the version 3.7 Docker Compose file format
+    - Starts a `web` container that:
+        - Uses the `./Dockerfile` as its image
+        - Exposes port 3000
+        - Bind mounts the `app/`, `config/`, and `public/` directories into their corresponding paths in the container
+        - Depends on and waits for the `mongo` container to start before it does
+    - Starts a `mongo` container that:
+        - Uses the `mongo` Docker image
+        - Mounts data from the local `data/` directory into Mongo's database filepath (see Challenge 2, 4)
+        - Exposes port 27017
+    - Hint: Use the [Docker Compose file reference](https://docs.docker.com/compose/compose-file/) to find the appropriate configurations
+2. Bring up the containers in detached mode using `docker-compose`
+3. View the status of the running containers with `docker ps`
+4. Tail the logs of the running containers
+5. Change a file in the `app/` or `public/` directory, confirm that the app is rebuilt and changes are made
+6. When all parts are complete, stop the containers using `docker-compose down`
+7. Bonus: Update your `docker-compose.yml` file so that there are two Node containers running on two different ports (3000, 3001)
