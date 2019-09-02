@@ -1,5 +1,5 @@
 # Node Twitter Docker - Answer Key
-No peaking! 👀
+No peeking! 👀
 
 ## Challenge 1
 
@@ -119,7 +119,36 @@ docker run -it -p 3000:3000 karllhughes/node-twitter-docker
 ```
 
 ## Challenge 4
-TBD
+
+Part 1 - 2
+
+```
+docker build -t node-twitter-docker .
+
+docker network create mynet
+```
+
+Part 3 - 5
+
+```
+docker run -v `pwd`/data:/data/db --network mynet --rm -d --name=mongo mongo
+
+docker run -p 3000:3000 --rm -it --network mynet --name=web node-twitter-docker
+
+(control + C)
+docker rm -f web
+```
+
+Part 6 - 8
+
+```
+docker run -p 3000:3000 --rm -d --network mynet --name=web -v `pwd`/app:/usr/src/app/app node-twitter-docker
+
+docker logs -f web mongo
+
+(control + C)
+docker rm -f web mongo && docker network rm mynet
+```
 
 ## Challenge 5
 TBD
