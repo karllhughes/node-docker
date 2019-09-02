@@ -1,0 +1,7 @@
+data/
+.git
+.idea
+.DS_Store
+npm-debug.log
+.secrets
+**/node_modules

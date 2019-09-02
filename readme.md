@@ -1,28 +1,32 @@
-# Node Twitter Docker - Challenge 3
-In the third challenge, you will create your own Dockerfile and use it to run the Node Twitter app.
+# Node Twitter Docker - Challenge 4
+In the third challenge, you will run a database and web container linked on a common network. After this exercise, you'll be able to see a working application at `localhost:3000`.
 
 If you get stuck, you can ask for help, or skip ahead to the next step and see if it can be done without the previous step.
 
 Record your solutions here or in a new document. You may be asked to share your solution with the class.
 
-1. Create a file in the root of this project called `Dockerfile`. Include instructions to accomplish the following:
-    - Extend the `node:12` base image
-    - Specify `/usr/src/app` as the working directory
-    - Add an environment variable called `SECRET` and set it equal to a long, random string of numbers
-    - Set the `NODE_ENV` environment variable to `development`
-    - Copy all the application files into the image 
-    - Install the npm dependencies
-    - Expose port 3000
-    - Set the final command to execute `npm start`
-    - Hint: The [Dockerfile reference](https://docs.docker.com/engine/reference/builder/) might come in handy if you don't remember all the instructions we covered.
-2. Add a `.docker-ignore` file that ensures the following paths are not included in the Docker image:
-    - Any editor-specific configuration files/directories
-    - Local node modules directory
-    - The `data/` directory (we'll be using this for the database later)
-    - Any `.env` or secrets files you are using. 
-3. Build a Docker image from your `Dockerfile`.
-4. Run your Docker image as a container with options such that:
-    - The container runs in "interactive" mode
-    - Port 3000 on the container is exposed to your localhost
-    - Hint: The container will crash and give you an error about not being able to connect to MongoDB, but we'll fix that in the next challenge.
-5. Bonus: Create an account on [Docker Hub](https://hub.docker.com/). Push your image to Docker Hub and have your partner pull the image and run it locally.
+1. Build a Docker image called `node-twitter-docker` using the `Dockerfile` in the root directory of this project.
+2. Create a Docker network called `mynet`.
+3. Run a MongoDB container with flags for the following options:
+    - Name the container `mongo`
+    - Run the container in detached mode
+    - Connect the container to the `mynet` network
+    - Use a bind mount (volume) to save the files in a in the `./data` directory in this project
+    - Make sure the container is running using `docker ps`
+    - Hint: Review the solution to Challenge 2 if you get stuck
+    - Hint 2: Review the [Docker networking documentation](https://docs.docker.com/network/bridge/#connect-a-container-to-a-user-defined-bridge) if you don't remember how to connect to a network.
+4. Run the `node-twitter-docker` image you just created in step 1 with flags for the following:
+    - Name the container `web`
+    - Expose port 3000 to your localhost
+    - Run the container in "interactive" mode
+    - Connect the container to the `mynet` network
+    - If this worked, you should not see an error about connecting to MongoDB this time, and the Twitter clone should be up and running at `localhost:3000`
+    - Hint: Review the solution to Challenge 3 if you get stuck
+5. Stop and remove the `web` container from step 4.
+6. Bonus: Re-run the `web` container, but this time:
+    - Run the container in "detached" mode instead of "interactive" mode
+    - Mount the `./app` directory in a volume
+7. Bonus 2: After the `web` container is running again:
+    - Use `docker logs` to tail both the `mongo` and `web` containers' logs at the same time 
+    - Change a file in the `./app` directory on your local machine
+    - Ensure that the build process is triggered and that the change takes effect 
