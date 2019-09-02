@@ -11,7 +11,7 @@ Record your solutions here or in a new document. You may be asked to share your 
     - Name the container `mongo`
     - Run the container in detached mode
     - Connect the container to the `mynet` network
-    - Use a bind mount (volume) to save the files in a in the `./data` directory in this project
+    - Use a bind mount (volume) to save the database files (located at `/data/db`) in a in the `./data` directory in this project
     - Make sure the container is running using `docker ps`
     - Hint: Review the solution to Challenge 2 if you get stuck
     - Hint 2: Review the [Docker networking documentation](https://docs.docker.com/network/bridge/#connect-a-container-to-a-user-defined-bridge) if you don't remember how to connect to a network.
@@ -25,8 +25,9 @@ Record your solutions here or in a new document. You may be asked to share your 
 5. Stop and remove the `web` container from step 4.
 6. Bonus: Re-run the `web` container, but this time:
     - Run the container in "detached" mode instead of "interactive" mode
-    - Mount the `./app` directory in a volume
+    - Mount the `./app` directory on your local machine as a bind mount to the `/usr/src/app/app` directory in the container
 7. Bonus 2: After the `web` container is running again:
-    - Use `docker logs` to tail both the `mongo` and `web` containers' logs at the same time 
+    - Use `docker logs` with the "follow" option to tail the `web` container's logs 
     - Change a file in the `./app` directory on your local machine
-    - Ensure that the build process is triggered and that the change takes effect 
+    - Ensure that the build process is triggered and that the change takes effect
+8. When all steps are complete, stop and remove both the Docker containers and the network.
