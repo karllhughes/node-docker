@@ -19,4 +19,4 @@ Record your solutions here or in a new document. You may be asked to share your 
     - The exit code of the `test` container is the exit code of the script
     - The containers are all stopped if any one is stopped
     - The image for the code is built every time the command runs
-    - Hint Refer to the [Docker Compose `up` CLI documentation](https://docs.docker.com/compose/reference/up/) to find the appropriate flags
+    - Hint: Refer to the [Docker Compose `up` CLI documentation](https://docs.docker.com/compose/reference/up/) to find the appropriate flags
