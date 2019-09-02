@@ -1,5 +1,5 @@
 # Node Twitter Docker - Challenge 4
-In the third challenge, you will run a database and web container linked on a common network. After this exercise, you'll be able to see a working application at `localhost:3000`.
+In the fourth challenge, you will run a database and web container linked on a common network. After this exercise, you'll be able to see a working application at `localhost:3000`.
 
 If you get stuck, you can ask for help, or skip ahead to the next step and see if it can be done without the previous step.
 
