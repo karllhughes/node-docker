@@ -17,7 +17,7 @@ services:
     depends_on:
     - mongo
     restart: on-failure
-    command: ["./scripts/wait-for-it.sh", "mongo:27017", "-t", "120", "--", "node", "server.js"]
+    command: ["./scripts/wait-for-it.sh", "mongo:27017", "--", "node", "server.js"]
   mongo:
     image: mongo:4.1
     environment:
