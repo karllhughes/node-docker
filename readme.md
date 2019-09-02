@@ -151,7 +151,77 @@ docker rm -f web mongo && docker network rm mynet
 ```
 
 ## Challenge 5
-TBD
+
+Part 1
+
+```
+version: "3.7"
+services:
+  web:
+    build: .
+    ports:
+    - "3000:3000"
+    volumes:
+    - ./app:/usr/src/app/app
+    - ./config:/usr/src/app/config
+    - ./public:/usr/src/app/public
+    depends_on:
+    - mongo
+    command: ["./scripts/wait-for-it.sh", "mongo:27017", "--", "npm", "start"]
+  mongo:
+    image: mongo
+    volumes:
+    - ./data:/data/db
+    ports:
+    - "27017:27017"
+```
+
+Part 2 - 4
+
+```
+docker-compose up -d
+
+docker ps
+
+docker-compose logs -f
+```
+
+Part 5
+
+Change any file in `./app` or `./public`
+
+Part 6
+
+```
+docker-compose down
+```
+
+Part 7
+
+```
+version: "3.7"
+services:
+  web1:
+    build: .
+    ports:
+    - "3000:3000"
+    depends_on:
+    - mongo
+    command: ["./scripts/wait-for-it.sh", "mongo:27017", "--", "npm", "start"]
+  web2:
+    build: .
+    ports:
+    - "3001:3000"
+    depends_on:
+    - mongo
+    command: ["./scripts/wait-for-it.sh", "mongo:27017", "--", "npm", "start"]
+  mongo:
+    image: mongo
+    volumes:
+    - ./data:/data/db
+    ports:
+    - "27017:27017"
+```
 
 ## Challenge 6
 TBD
