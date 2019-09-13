@@ -248,5 +248,78 @@ docker-compose -f docker-compose.test.yml up --abort-on-container-exit --exit-co
 ```
 
 ## Challenge 7
-TBD
 
+Part 1
+
+```Dockerfile
+FROM node:12
+
+WORKDIR /usr/src/app
+
+# Environment variables
+ENV NODE_ENV='production'
+
+# Install app dependencies
+COPY package*.json ./
+RUN npm install --production
+
+# Copy app source code
+COPY . .
+
+# Expose port
+EXPOSE 3000
+
+# Run as node user for security
+USER node
+
+# Run the application
+CMD [ "node", "server.js" ]
+```
+
+Part 2
+
+```yaml
+version: "3.7"
+services:
+  web:
+    build:
+      dockerfile: Dockerfile.prod
+      context: .
+    ports:
+    - "80:3000"
+    # or "3000:3000"
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME
+      - MONGO_INITDB_ROOT_PASSWORD
+      - MONGO_INITDB_DATABASE
+      - ROOT_DOMAIN
+      - SECRET
+      - GITHUB_CLIENT_ID
+      - GITHUB_CLIENT_SECRET
+    depends_on:
+    - mongo
+    restart: on-failure
+    command: ["./scripts/wait-for-it.sh", "mongo:27017", "--", "node", "server.js"]
+  mongo:
+    image: mongo:4.1
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME
+      - MONGO_INITDB_ROOT_PASSWORD
+      - MONGO_INITDB_DATABASE
+    restart: on-failure
+    volumes:
+    - ./data:/data/db
+```
+
+Part 3
+
+```bash
+MONGO_INITDB_ROOT_USERNAME=ntwitter \
+  MONGO_INITDB_ROOT_PASSWORD=... \
+  MONGO_INITDB_DATABASE=ntwitter \
+  SECRET=dn2g057i3v822y17QLd164oj4z4g70aB \
+  GITHUB_CLIENT_ID=... \
+  GITHUB_CLIENT_SECRET=... \
+  ROOT_DOMAIN=http://167.71.111.237 \
+  docker-compose -f docker-compose.prod.yml up --build -d
+```
