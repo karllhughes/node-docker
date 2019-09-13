@@ -10,6 +10,7 @@ Record your answers here or in a new document. You may be asked to share your so
     - Run the container in detached mode
     - Hint: To keep the container running, use the command `tail -f /dev/null`. Your whole Docker run command will look something like this: `docker run ...FLAGS_HERE... alpine tail -f /dev/null`.
     - Hint 2: Review the [`docker run` command docs](https://docs.docker.com/engine/reference/commandline/run/) for details on the flags available.
+    - When run correctly, you should see the hash ID of the new container
 2. View all running containers with `docker ps`
 3. View the logs of the running container using `docker logs` (there may not be anything in the file)
 4. Execute a `echo "Hello"` from the running container using `docker exec`
